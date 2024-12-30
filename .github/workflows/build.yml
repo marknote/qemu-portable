@@ -16,12 +16,13 @@ jobs:
       - name: installer
         shell: cmd
         run: |
-          curl https://qemu.weilnetz.de/w64/qemu-w64-setup-${{ github.ref_name }}.exe -L -O
+          curl https://qemu.weilnetz.de/w64/qemu-w64-setup-20241220.exe -L -O
+          dir
           
       - name: innoextract 
         shell: cmd
         run: |
-          qemu-w64-setup-${{ github.ref_name }}.exe /S /D=%CD%\installation &&^
+          qemu-w64-setup-20241220.exe /S /D=%CD%\installation &&^
           cd installation &&^
           del qemu-uninstall.exe
           
