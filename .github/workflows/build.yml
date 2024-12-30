@@ -25,7 +25,13 @@ jobs:
           qemu-w64-setup-20241220.exe /S /D=%CD%\installation &&^
           cd installation &&^
           del qemu-uninstall.exe
-          for %f in (qemu-system-*.exe) do @if not "%f"=="qemu-system-x86_64.exe" if not "%f"=="qemu-system-x86_64w.exe" del "%f"
+          for %%f in (qemu-system-*.exe) do (
+             if not "%%f"=="qemu-system-x86_64.exe" (
+                 if not "%%f"=="qemu-system-x86_64w.exe" (
+                     del "%%f"
+                  )
+              )
+          )
       - name: Upload directory as artifact
         uses: actions/upload-artifact@v3
         with:
